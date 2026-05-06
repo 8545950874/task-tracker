@@ -9,8 +9,10 @@ pipeline {
         }
         stage('K8s Deploy') {
             steps {
-                bat "kubectl apply -f k8s/deployment.yaml"
-                bat "kubectl apply -f k8s/service.yaml"
+                def kubeConfig = 'C:\\Users\\Anurag Singh\\.kube\\config'
+                echo "Deploying to Minikube..."
+                bat "kubectl --kubeconfig=\"${kubeConfig}\" apply -f k8s/deployment.yaml --validate=false"
+                bat "kubectl --kubeconfig=\"${kubeConfig}\" apply -f k8s/service.yaml --validate=false"
             }
         }
     }

@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Docker Build') {
             steps {
-                bat "docker build -t anuragsinghak95/task-tracker:latest ./app"
+               bat "cd app && docker build -t anuragsinghak95/task-tracker:latest ."
             }
         }
         stage('K8s Deploy') {
